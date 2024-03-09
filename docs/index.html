@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smiski Unboxing!</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ctext x='0' y='12' font-size='12' fill='%23000000'%3E😐%3C/text%3E%3C/svg%3E">
+
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Bootstrap CSS link -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+
+    
+  </style>
+</head>
+<body>
+    <h1>Select a smiski series!</h1>
+    <div id="series">
+        <img src="images/exercising/box.png" class="box" id="box1" alt="exercising box" style="width: 200px;" onclick="handleImageClick('exercising')">
+        <img src="images/sleeping/box.png" class="box" id="box2" alt="sleeping box" style="width: 200px;" onclick="handleImageClick('sleeping')">
+        <img src="images/yoga/box.png" class="box" id="box3" alt="yoga box" style="width: 200px;" onclick="handleImageClick('yoga')">
+    </div>
+    
+    <script>
+        function handleImageClick(series) {
+            // Redirect to selected.html with the selected series as a query parameter
+            window.location.href = `selected.html?series=${series}`;
+        }
+    </script>
+</body>
+</html>

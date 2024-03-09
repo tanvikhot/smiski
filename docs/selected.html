@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smiski Unboxing!</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ctext x='0' y='12' font-size='12' fill='%23000000'%3E😐%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Bootstrap CSS link -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Your custom styles go here */
+  </style>
+</head>
+<body>
+    <h1>Unbox a Smiski!</h1>
+    <div id="boxContainer">
+        <img class="box" id="box1" alt="${series} box" style="width: 350px;" onclick="handleImageClick(this)">
+        <img class="box" id="box2" alt="${series} box" style="width: 350px;" onclick="handleImageClick(this)">
+        <img class="box" id="box3" alt="${series} box" style="width: 350px;" onclick="handleImageClick(this)">
+    </div>
+    <button class="btn btn-success" onclick="resetImages()">Unbox Another!</button>
+    <script>
+        const originalImage = document.getElementById('shakeImage');
+        let selectedBox;
+        const imageUrls = [
+            `images/${getSeries()}/figure1.png`,
+            `images/${getSeries()}/figure2.png`,
+            `images/${getSeries()}/figure3.png`,
+            `images/${getSeries()}/figure4.png`,
+            `images/${getSeries()}/figure5.png`,
+            `images/${getSeries()}/figure6.png`,
+        ];
+
+        const boxContainer = document.getElementById('boxContainer');
+        function resetImages() {
+            boxContainer.innerHTML = ""; 
+            selectedBox = null;
+            for (let i = 1; i <= 3; i++) {
+                const box = document.createElement('img');
+                box.src = `images/${getSeries()}/box.png`;
+                box.alt = `${getSeries()} box`;
+                box.style.width = "350px";
+                box.classList.add('box');
+                box.id = `box${i}`;
+                box.addEventListener('click', () => handleImageClick(box));
+                boxContainer.appendChild(box);
+            }
+        }
+        resetImages();
+        function handleImageClick(box) {
+            if (selectedBox) {
+                return;
+            }
+            const image = box;
+            const isFigure = image.classList.contains('figure');
+            if (!isFigure) {
+                image.classList.add('shake');
+                setTimeout(() => {
+                image.classList.add('figure');
+                const randomChance = Math.random();
+                if (randomChance < 1 / 144) {
+                    image.src = `images/${getSeries()}/secret.png`;
+                    image.alt = "secret smiski";
+                } else {
+                    const randomIndex = Math.floor(Math.random() * imageUrls.length);
+                    image.src = imageUrls[randomIndex];
+                    image.alt = "figure image";
+                }
+                image.style.width = "250px";
+                image.classList.remove('shake');
+                }, 1500); // 500ms * 3 shakes
+            } 
+            selectedBox = box;  
+        }
+
+        function getSeries() {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            return urlParams.get('series') || 'exercising'; 
+        }
+    </script>
+</body>
+</html>
