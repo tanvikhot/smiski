@@ -13,10 +13,11 @@
   </style>
 </head>
 <body>
+    <button class="btn btn-primary" onclick="goBack()">Select Another Series!</button>
     <h1>Unbox a Smiski!</h1>
     <div id="boxContainer">
         <img class="box" id="box1" alt="${series} box" style="width: 300px;" onclick="handleImageClick(this)">
-        <img class="box" id="box2" alt="${series} box" style="width: 300px;" onclick="handleImageClick(this)">
+        <img class="box" id="box2" alt="${series} box" style="width: 200px;" onclick="handleImageClick(this)">
         <img class="box" id="box3" alt="${series} box" style="width: 300px;" onclick="handleImageClick(this)">
     </div>
 
@@ -71,7 +72,7 @@
                     image.src = imageUrls[randomIndex];
                     image.alt = "figure image";
                 }
-                image.style.width = "250px";
+                image.style.width = "200px";
                 image.classList.remove('shake');
                 }, 1500); // 500ms * 3 shakes
             } 

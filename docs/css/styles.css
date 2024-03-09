@@ -14,19 +14,17 @@ h1 {
 }
 
 #series {
-  max-width: 800px;
+  max-width: 100%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 10px;
-  text-align: center; /* Center the text in each box */
 }
 
 .box {
   width: 100%;
-  max-width: 300px;
+  max-width: 200px; /* Adjust the maximum width as needed */
   cursor: pointer;
-  margin: 0 auto; /* Center the box horizontally */
 }
 
 img {
@@ -41,7 +39,7 @@ img.shake {
 }
 
 img.figure {
-  max-width: 100%; /* Adjust the size as needed */
+  max-width: 50%; /* Adjust the size as needed */
 }
 
 @keyframes shake {
@@ -53,5 +51,16 @@ img.figure {
   }
   50% {
     transform: translateX(5px);
+  }
+}
+
+@media (max-width: 768px) {
+  /* Adjust styles for smaller screens if needed */
+  #series {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+
+  .box {
+    max-width: 120px;
   }
 }
