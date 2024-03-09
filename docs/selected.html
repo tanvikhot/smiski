@@ -15,10 +15,11 @@
 <body>
     <h1>Unbox a Smiski!</h1>
     <div id="boxContainer">
-        <img class="box" id="box1" alt="${series} box" style="width: 350px;" onclick="handleImageClick(this)">
-        <img class="box" id="box2" alt="${series} box" style="width: 350px;" onclick="handleImageClick(this)">
-        <img class="box" id="box3" alt="${series} box" style="width: 350px;" onclick="handleImageClick(this)">
+        <img class="box" id="box1" alt="${series} box" style="width: 300px;" onclick="handleImageClick(this)">
+        <img class="box" id="box2" alt="${series} box" style="width: 300px;" onclick="handleImageClick(this)">
+        <img class="box" id="box3" alt="${series} box" style="width: 300px;" onclick="handleImageClick(this)">
     </div>
+
     <button class="btn btn-success" onclick="resetImages()">Unbox Another!</button>
     <script>
         const originalImage = document.getElementById('shakeImage');
@@ -33,6 +34,9 @@
         ];
 
         const boxContainer = document.getElementById('boxContainer');
+        function goBack() {
+            window.location.href = `index.html`;
+        }
         function resetImages() {
             boxContainer.innerHTML = ""; 
             selectedBox = null;
@@ -40,7 +44,7 @@
                 const box = document.createElement('img');
                 box.src = `images/${getSeries()}/box.png`;
                 box.alt = `${getSeries()} box`;
-                box.style.width = "350px";
+                box.style.width = "300px";
                 box.classList.add('box');
                 box.id = `box${i}`;
                 box.addEventListener('click', () => handleImageClick(box));
