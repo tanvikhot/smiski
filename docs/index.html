@@ -1,41 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smiski Unboxing!</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ctext x='0' y='12' font-size='12' fill='%23000000'%3E😐%3C/text%3E%3C/svg%3E">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smiski Unboxing! - Login</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ctext x='0' y='12' font-size='12' fill='%23000000'%3E😐%3C/text%3E%3C/svg%3E">
 
-  <link rel="stylesheet" href="css/styles.css">
-  <!-- Bootstrap CSS link -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <style>
+    <!-- Link to your custom stylesheet in the static folder -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 
-    
-  </style>
-</head>
-<body>
-    <h1>Select a smiski series!</h1>
-    <div id="series">
-        <img src="images/exercising/box.png" class="box" id="box1" alt="exercising box" style="width: 300px;" onclick="handleImageClick('exercising')">
-        <img src="images/sleeping/box.png" class="box" id="box2" alt="sleeping box" style="width: 300px;" onclick="handleImageClick('sleeping')">
-        <img src="images/yoga/box.png" class="box" id="box3" alt="yoga box" style="width: 300px;" onclick="handleImageClick('yoga')">
-        <img src="images/bath/box.png" class="box" id="box4" alt="bath box" style="width: 300px;" onclick="handleImageClick('bath')">
-        <img src="images/cheer/box.png" class="box" id="box5" alt="cheer box" style="width: 300px;" onclick="handleImageClick('cheer')">
-        <img src="images/toilet/box.png" class="box" id="box6" alt="toilet box" style="width: 300px;" onclick="handleImageClick('toilet')">
-        <img src="images/dressing/box.png" class="box" id="box7" alt="dressing box" style="width: 300px;" onclick="handleImageClick('dressing')">
-        <img src="images/living/box.png" class="box" id="box8" alt="living box" style="width: 300px;" onclick="handleImageClick('living')">
-        <img src="images/museum/box.png" class="box" id="box9" alt="museum box" style="width: 300px;" onclick="handleImageClick('museum')">
-        <img src="images/series1/box.png" class="box" id="box10" alt="series1 box" style="width: 300px;" onclick="handleImageClick('series1')">
-        <img src="images/work/box.png" class="box" id="box11" alt="work box" style="width: 300px;" onclick="handleImageClick('work')">
-        <img src="images/moving/box.png" class="box" id="box12" alt="moving box" style="width: 300px;" onclick="handleImageClick('moving')">
-    </div>
-    
-    <script>
-        function handleImageClick(series) {
-            // Redirect to selected.html with the selected series as a query parameter
-            window.location.href = `selected.html?series=${series}`;
+    <!-- Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
         }
-    </script>
+
+        .login-container {
+            background-color: #afc9b6;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #343a40;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #495057;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p.error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h3>Login to you Smiski Unboxing account!</h3>
+        <form action="/" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+        {% if error %}
+        <p class="error-message">{{ error }}</p>
+        {% endif %}
+    </div>
 </body>
+
 </html>

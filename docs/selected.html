@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Smiski Unboxing!</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ctext x='0' y='12' font-size='12' fill='%23000000'%3E😐%3C/text%3E%3C/svg%3E">
-  <link rel="stylesheet" href="css/styles.css">
+  <!-- Link to your custom stylesheet in the static folder -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
   <!-- Bootstrap CSS link -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
@@ -16,35 +17,40 @@
     <button class="btn btn-primary" onclick="goBack()">Select Another Series!</button>
     <h1 id="seriesHeading">Unbox a Smiski series!</h1>
     <div id="boxContainer">
+        <!-- Use url_for to correctly reference images in the static folder -->
         <img class="box" id="box1" alt="${series} box" style="width: 300px;" onclick="handleImageClick(this)">
         <img class="box" id="box2" alt="${series} box" style="width: 300px;" onclick="handleImageClick(this)">
         <img class="box" id="box3" alt="${series} box" style="width: 300px;" onclick="handleImageClick(this)">
     </div>
     <p></p>
-    <button class="btn btn-success" onclick="resetImages()">Unbox Another!</button>
+    <button class="btn btn-success" onclick="resetImages('{{ series }}')">Unbox Another!</button>
+
     <script>
         const originalImage = document.getElementById('shakeImage');
         let selectedBox;
         const imageUrls = [
-            `images/${getSeries()}/figure1.png`,
-            `images/${getSeries()}/figure2.png`,
-            `images/${getSeries()}/figure3.png`,
-            `images/${getSeries()}/figure4.png`,
-            `images/${getSeries()}/figure5.png`,
-            `images/${getSeries()}/figure6.png`,
+            // Use url_for to correctly reference images in the static folder
+            `{{ url_for('static', filename='images/' + series + '/figure1.png') }}`,
+            `{{ url_for('static', filename='images/' + series + '/figure2.png') }}`,
+            `{{ url_for('static', filename='images/' + series + '/figure3.png') }}`,
+            `{{ url_for('static', filename='images/' + series + '/figure4.png') }}`,
+            `{{ url_for('static', filename='images/' + series + '/figure5.png') }}`,
+            `{{ url_for('static', filename='images/' + series + '/figure6.png') }}`,
         ];
 
         const boxContainer = document.getElementById('boxContainer');
         function goBack() {
-            window.location.href = `index.html`;
+            window.location.href = `select_smiski`;
         }
-        function resetImages() {
-            boxContainer.innerHTML = ""; 
+        function resetImages(currentSeries) {
+            console.log("Current series:", currentSeries);
+
+            boxContainer.innerHTML = "";
             selectedBox = null;
             for (let i = 1; i <= 3; i++) {
                 const box = document.createElement('img');
-                box.src = `images/${getSeries()}/box.png`;
-                box.alt = `${getSeries()} box`;
+                box.src = `{{ url_for('static', filename='images/' + series + '/box.png') }}`;
+                box.alt = `${currentSeries} box`;
                 box.style.width = "300px";
                 box.classList.add('box');
                 box.id = `box${i}`;
@@ -52,7 +58,9 @@
                 boxContainer.appendChild(box);
             }
         }
-        resetImages();
+
+        resetImages('{{ series }}');
+
         function handleImageClick(box) {
             if (selectedBox) {
                 return;
@@ -65,7 +73,8 @@
                 image.classList.add('figure');
                 const randomChance = Math.random();
                 if (randomChance < 1 / 144) {
-                    image.src = `images/${getSeries()}/secret.png`;
+                    // Use url_for to correctly reference images in the static folder
+                    image.src = `{{ url_for('static', filename='images/' + series + '/secret.png') }}`;
                     image.alt = "secret smiski";
                 } else {
                     const randomIndex = Math.floor(Math.random() * imageUrls.length);
@@ -89,7 +98,7 @@
             seriesHeading.textContent = `Unbox a ${series} series Smiski!`;
         }
 
-        setSeriesHeading(getSeries());
+        setSeriesHeading(series);
     </script>
 </body>
 </html>
