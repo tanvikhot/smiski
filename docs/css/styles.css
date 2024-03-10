@@ -57,10 +57,10 @@ img.figure {
 @media (max-width: 768px) {
   /* Adjust styles for smaller screens if needed */
   #series {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
   }
 
   .box {
-    max-width: 120px;
+    max-width: 110px;
   }
 }
