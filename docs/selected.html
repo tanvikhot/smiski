@@ -14,13 +14,13 @@
 </head>
 <body>
     <button class="btn btn-primary" onclick="goBack()">Select Another Series!</button>
-    <h1>Unbox a Smiski!</h1>
+    <h1 id="seriesHeading">Unbox a Smiski series!</h1>
     <div id="boxContainer">
         <img class="box" id="box1" alt="${series} box" style="width: 300px;" onclick="handleImageClick(this)">
         <img class="box" id="box2" alt="${series} box" style="width: 200px;" onclick="handleImageClick(this)">
         <img class="box" id="box3" alt="${series} box" style="width: 300px;" onclick="handleImageClick(this)">
     </div>
-
+    <p></p>
     <button class="btn btn-success" onclick="resetImages()">Unbox Another!</button>
     <script>
         const originalImage = document.getElementById('shakeImage');
@@ -84,6 +84,12 @@
             const urlParams = new URLSearchParams(queryString);
             return urlParams.get('series') || 'exercising'; 
         }
+        function setSeriesHeading(series) {
+            const seriesHeading = document.getElementById('seriesHeading');
+            seriesHeading.textContent = `Unbox a ${series} series Smiski!`;
+        }
+
+        setSeriesHeading(getSeries());
     </script>
 </body>
 </html>
