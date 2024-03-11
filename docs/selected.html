@@ -64,17 +64,61 @@
                 setTimeout(() => {
                 image.classList.add('figure');
                 const randomChance = Math.random();
-                if (randomChance < 1 / 144) {
-                    image.src = `images/${getSeries()}/secret.png`;
-                    image.alt = "secret smiski";
+                if (getSeries() === 'series1' && randomChance < 1/4) {
+                    // Display secret baby and regular random image for series1 with 1/4 chance
+                    const secretBabyIndex = Math.floor(Math.random() * 3) + 1;
+
+                    
+                    const imagesContainer = document.createElement('div');
+                    imagesContainer.style.display = 'flex';
+                    imagesContainer.style.flexDirection = 'column';
+
+                    // Secret baby image
+                    const secretBabyImage = document.createElement('img');
+                    secretBabyImage.src = `images/${getSeries()}/babysecret${secretBabyIndex}.png`;
+                    secretBabyImage.alt = "secret baby smiski";
+                    secretBabyImage.style.width = "90px";
+                    secretBabyImage.style.maxWidth = "100%";
+                    secretBabyImage.classList.add('box');
+
+                    // Regular random image
+                    const regularRandomImage = document.createElement('img');
+                    if (randomChance < 1 / 144) {
+                        const randomIndex = Math.floor(Math.random() * imageUrls.length);
+                        regularRandomImage.src = `images/${getSeries()}/secret.png`;
+                        regularRandomImage.alt = "secret smiski";
+                        regularRandomImage.style.width = "100px";
+                    } else {
+                        const randomIndex = Math.floor(Math.random() * imageUrls.length);
+                        regularRandomImage.src = imageUrls[randomIndex];
+                        regularRandomImage.alt = "figure image";
+                        regularRandomImage.style.width = "200px";
+                    }
+                    regularRandomImage.style.maxWidth = "100%";
+                    
+                    regularRandomImage.classList.add('box');
+                    regularRandomImage.classList.add('figure');
+
+                    // Append both images to the new container
+                    imagesContainer.appendChild(secretBabyImage);
+                    imagesContainer.appendChild(regularRandomImage);
+
+                    // Replace the selected box with the new container
+                    boxContainer.replaceChild(imagesContainer, box);
                 } else {
-                    const randomIndex = Math.floor(Math.random() * imageUrls.length);
-                    image.src = imageUrls[randomIndex];
-                    image.alt = "figure image";
-                }
+                    if (randomChance < 1 / 144) {
+                        image.src = `images/${getSeries()}/secret.png`;
+                        image.alt = "secret smiski";
+                    } else {
+                        const randomIndex = Math.floor(Math.random() * imageUrls.length);
+                        image.src = imageUrls[randomIndex];
+                        image.alt = "figure image";
+                    }
+                } 
                 image.style.width = "170px";
+                regularRandomImage.classList.add('figure');
                 image.classList.remove('shake');
-                }, 1500); // 500ms * 3 shakes
+            }, 1500); // 500ms * 3 shakes
             } 
             selectedBox = box;  
         }

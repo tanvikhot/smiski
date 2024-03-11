@@ -29,6 +29,14 @@ h1 {
   cursor: pointer;
 }
 
+.figure {
+  width: 100%;
+  max-width: 200px; /* Adjust the maximum width as needed */
+  cursor: pointer;
+}
+
+
+
 img {
   max-width: 100%;
   height: auto;
@@ -67,4 +75,10 @@ img.figure {
   .box {
     max-width: 110px;
   }
+}
+
+#boxContainer {
+  display: flex;
+  justify-content: space-around; /* Adjust as needed */
+  align-items: center; /* Adjust as needed */
 }
