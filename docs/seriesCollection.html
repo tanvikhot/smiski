@@ -17,12 +17,16 @@
     }
     
     #smiskiContainer {
+      position: absolute;
+      top: 140px; /* Adjust top position as needed */
+      left: 50%;
+      transform: translateX(-50%);
       display: flex;
       flex-wrap: wrap;
-      /* justify-content: center; */
-      /* align-items: center; */
+      justify-content: center;
+      align-items: flex-start; /* Align items to the start */
       max-width: 90%;
-      margin: 0 auto;
+      margin: 20px auto 0; /* Added margin-top to prevent overlap with h1 */
     }
     #seriesHeading {
       position: absolute;
