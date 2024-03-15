@@ -10,10 +10,15 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
     /* Your custom styles go here */
+    .btn-my-collection {
+      position: absolute;
+      top: 20px; /* Adjust top padding as needed */
+      left: 20px; /* Move the button to the far right */
+    }
   </style>
 </head>
 <body>
-    <button class="btn btn-primary" onclick="goBack()">Select Another Series!</button>
+    <button class="btn btn-primary btn-my-collection" onclick="goBack()">Select Another Series!</button>
     <h1 id="seriesHeading">Unbox a Smiski series!</h1>
     <div id="boxContainer">
         <img class="box" id="box1" alt="${series} box" style="width: 300px;" onclick="handleImageClick(this)">
@@ -33,7 +38,7 @@
             `images/${getSeries()}/figure5.png`,
             `images/${getSeries()}/figure6.png`,
         ];
-
+        
         const boxContainer = document.getElementById('boxContainer');
         function goBack() {
             window.location.href = `index.html`;
@@ -76,8 +81,9 @@
                     // Secret baby image
                     const secretBabyImage = document.createElement('img');
                     secretBabyImage.src = `images/${getSeries()}/babysecret${secretBabyIndex}.png`;
+                    storeSmiski(secretBabyImage.src);
                     secretBabyImage.alt = "secret baby smiski";
-                    secretBabyImage.style.width = "80px";
+                    secretBabyImage.style.width = "90px";
                     secretBabyImage.style.maxWidth = "100%";
                     secretBabyImage.classList.add('box');
 
@@ -92,10 +98,10 @@
                         const randomIndex = Math.floor(Math.random() * imageUrls.length);
                         regularRandomImage.src = imageUrls[randomIndex];
                         regularRandomImage.alt = "figure image";
-                        regularRandomImage.style.width = "180px";
+                        regularRandomImage.style.width = "200px";
                     }
                     regularRandomImage.style.maxWidth = "100%";
-                    
+                    storeSmiski(regularRandomImage.src);
                     regularRandomImage.classList.add('box');
                     regularRandomImage.classList.add('figure');
 
@@ -116,8 +122,9 @@
                     }
                 } 
                 image.style.width = "170px";
-                regularRandomImage.classList.add('figure');
+                image.classList.add('figure');
                 image.classList.remove('shake');
+                storeSmiski(image.src);
             }, 1500); // 500ms * 3 shakes
             } 
             selectedBox = box;  
@@ -134,6 +141,30 @@
         }
 
         setSeriesHeading(getSeries());
+
+        function storeSmiski(smiski) {
+            let dictionary = JSON.parse(localStorage.getItem('smiskis')) || {};
+    
+            const relativePath = smiski.substring(smiski.indexOf('images/'));
+
+            if (!dictionary.hasOwnProperty(getSeries())) {
+                dictionary[getSeries()] = {};
+            }
+
+            let series = dictionary[getSeries()];
+            if (!series.hasOwnProperty(relativePath)) {
+                series[relativePath] = 0;
+            }
+
+            series[relativePath]++;
+
+            localStorage.setItem('smiskis', JSON.stringify(dictionary));
+        }
+
+        
+
+        // localStorage.clear();
+
     </script>
 </body>
 </html>

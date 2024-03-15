@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smiski Collection!</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ctext x='0' y='12' font-size='12' fill='%23000000'%3E😐%3C/text%3E%3C/svg%3E">
+  <!-- Bootstrap CSS link -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Custom CSS */
+    .btn-my-collection {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 999;
+    }
+    
+    /* Style for the heading */
+    #seriesHeading {
+      margin-bottom: 20px;
+      word-wrap: break-word;
+      text-align: center;
+    }
+
+    /* Style for the container of images */
+    #smiskiContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      max-width: 90%;
+      margin: 0 auto;
+    }
+
+    /* Style for individual images */
+    .smiski-image {
+      width: 150px; /* Adjust the size as needed */
+      height: auto;
+      margin: 10px;
+    }
+
+    @media (max-width: 576px) {
+      .btn-my-collection {
+        top: 20px; /* Move the button back to the top */
+        bottom: auto;
+        left: 25%; /* Center the button horizontally */
+        transform: translateX(-50%); /* Adjust for centering */
+      }
+
+      #seriesHeading {
+        margin-top: 40px; /* Adjust the margin to create space between button and heading */
+        padding: 20px 0; /* Add padding to the top and bottom */
+      }
+    }
+  </style>
+</head>
+<body>
+    <p></p>
+    <!-- Button to go back -->
+    <button class="btn btn-success btn-my-collection" onclick="goBack()">Select another series</button>
+    <p></p>
+    <!-- Title indicating the series -->
+    <h1 id="seriesHeading">Your Smiskis</h1>
+    <!-- Container to display Smiskis -->
+    <div id="smiskiContainer"></div>
+
+    <script>
+        function goBack() {
+            // Redirect to selected.html with the selected series as a query parameter
+            window.location.href = `collection.html`;
+        }
+        function getSeries() {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            return urlParams.get('series') || 'exercising'; 
+        }
+        function setSeriesHeading(series) {
+            const seriesHeading = document.getElementById('seriesHeading');
+            seriesHeading.textContent = `Your ${series} Smiskis!`;
+        }
+
+        setSeriesHeading(getSeries());
+
+        function displayCollectedSmiskis() {
+            const series = getSeries(); // Get the series name
+            setSeriesHeading(series); // Set the title indicating the series
+
+            // Retrieve the Smiskis dictionary from localStorage
+            const smiskisDict = JSON.parse(localStorage.getItem('smiskis')) || {};
+            const seriesSmiskis = smiskisDict[series] || {};
+
+            const smiskiContainer = document.getElementById('smiskiContainer');
+
+            // Iterate over the collected Smiskis for the series and display them
+            for (const smiskiImagePath in seriesSmiskis) {
+                const smiskiImage = document.createElement('img');
+                smiskiImage.src = smiskiImagePath; // Set the image source
+                smiskiImage.alt = 'Smiski Image'; // Set the alt attribute
+                smiskiImage.classList.add('smiski-image'); // Add custom class for styling
+                smiskiContainer.appendChild(smiskiImage); // Append the image to the container
+            }
+        }
+
+        displayCollectedSmiskis();
+    </script>
+</body>
+</html>

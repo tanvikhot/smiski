@@ -13,16 +13,16 @@
     .btn-my-collection {
       position: absolute;
       top: 20px; /* Adjust top padding as needed */
-      right: 20px; /* Move the button to the far right */
+      left: 20px; /* Move the button to the far right */
     }
   </style>
 </head>
 <body>
     <p></p>
     <!-- Add custom class to the button -->
-    <button class="btn btn-success btn-my-collection" onclick="collection()">My collection</button>
+    <button class="btn btn-primary btn-my-collection" onclick="goBack()">Go Home</button>
     <p></p>
-    <h1>Select a smiski series!</h1>
+    <h1>Select a smiski series to view your collection!</h1>
     
     <div id="series">
         <img src="images/exercising/box.png" class="box" id="box1" alt="exercising box" style="width: 300px;" onclick="handleImageClick('exercising')">
@@ -40,13 +40,14 @@
     </div>
     <div></div>
     <script>
-        function handleImageClick(series) {
+        function goBack() {
             // Redirect to selected.html with the selected series as a query parameter
-            window.location.href = `selected.html?series=${series}`;
+            window.location.href = `index.html`;
         }
 
-        function collection() {
-            window.location.href = `collection.html`;
+        function handleImageClick(series) {
+            // Redirect to selected.html with the selected series as a query parameter
+            window.location.href = `seriesCollection.html?series=${series}`;
         }
     </script>
 </body>
