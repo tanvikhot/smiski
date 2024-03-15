@@ -26,7 +26,8 @@
         <img class="box" id="box3" alt="${series} box" style="width: 300px;" onclick="handleImageClick(this)">
     </div>
     <p></p>
-    <button class="btn btn-success" onclick="resetImages()">Unbox Another!</button>
+    <div id="timeLeft"></div>
+    <!-- <button class="btn btn-success" onclick="resetImages()">Unbox Another!</button> -->
     <script>
         const originalImage = document.getElementById('shakeImage');
         let selectedBox;
@@ -59,6 +60,22 @@
         }
         resetImages();
         function handleImageClick(box) {
+            const lastOpened = localStorage.getItem('lastOpened');
+            if (lastOpened) {
+                const oneDayAgo = new Date().getTime() - (24*60 * 60 * 1000);
+                const timeLeft = oneDayAgo - lastOpened;
+                if (timeLeft < 0) {
+                    const hoursLeft = Math.floor(Math.abs(timeLeft) / (1000 * 60 * 60));
+                    const minutesLeft = Math.floor(Math.abs(timeLeft) % (1000 * 60 * 60) / (1000 * 60));
+                    const secondsLeft = Math.floor(Math.abs(timeLeft) % (1000 * 60) / 1000);
+                    const formattedMinutes = minutesLeft.toString().padStart(2, '0');
+                    const formattedSeconds = secondsLeft.toString().padStart(2, '0');
+                    document.getElementById('timeLeft').textContent = `Time before you can open another smiski: ${hoursLeft}:${formattedMinutes}:${formattedSeconds}`;
+                    return;
+                } else {
+                    document.getElementById('timeLeft').textContent = '';
+                }
+            }
             if (selectedBox) {
                 return;
             }
@@ -128,6 +145,7 @@
             }, 1500); // 500ms * 3 shakes
             } 
             selectedBox = box;  
+            localStorage.setItem('lastOpened', new Date().getTime());
         }
 
         function getSeries() {
@@ -162,9 +180,28 @@
         }
 
         
+        function updateCountdown() {
+            const lastOpened = localStorage.getItem('lastOpened');
+            if (lastOpened) {
+                const oneDayAgo = new Date().getTime() - (24*60 * 60 * 1000);
+                const timeLeft = oneDayAgo - lastOpened;
+                if (timeLeft < 0) {
+                    const hoursLeft = Math.floor(Math.abs(timeLeft) / (1000 * 60 * 60));
+                    const minutesLeft = Math.floor(Math.abs(timeLeft) % (1000 * 60 * 60) / (1000 * 60));
+                    const secondsLeft = Math.floor(Math.abs(timeLeft) % (1000 * 60) / 1000);
+                    // const formattedHours = hoursLeft.toString().padStart(2, '0');
+                    const formattedMinutes = minutesLeft.toString().padStart(2, '0');
+                    const formattedSeconds = secondsLeft.toString().padStart(2, '0');
+                    document.getElementById('timeLeft').textContent = `Time before you can open another smiski: ${hoursLeft}:${formattedMinutes}:${formattedSeconds}`;
+                } else {
+                    document.getElementById('timeLeft').textContent = '';
+                }
+            }
+        }
 
+        
         // localStorage.clear();
-
+        setInterval(updateCountdown, 1000);
     </script>
 </body>
 </html>
