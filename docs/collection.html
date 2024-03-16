@@ -15,12 +15,20 @@
       top: 20px; /* Adjust top padding as needed */
       left: 20px; /* Move the button to the far right */
     }
+    .btn-my-entire-collection {
+      position: absolute;
+      top: 20px; /* Adjust top padding as needed */
+      right: 20px; /* Move the button to the far right */
+    }
   </style>
 </head>
 <body>
     <p></p>
     <!-- Add custom class to the button -->
     <button class="btn btn-primary btn-my-collection" onclick="goBack()">Go Home</button>
+    <p></p>
+    <button class="btn btn-warning btn-my-entire-collection" onclick="entireCollection()">View Entire Collection</button>
+
     <p></p>
     <h1>Select a smiski series to view your collection!</h1>
     
@@ -48,6 +56,10 @@
         function handleImageClick(series) {
             // Redirect to selected.html with the selected series as a query parameter
             window.location.href = `seriesCollection.html?series=${series}`;
+        }
+
+        function entireCollection() {
+            window.location.href = `entireCollection.html`;
         }
     </script>
 </body>
