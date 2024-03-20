@@ -87,7 +87,23 @@
             window.location.href = `index.html`;
         }
 
+        function calculateTotal() {
+            let dictionary = JSON.parse(localStorage.getItem('smiskis')) || {};
+            let total = 0;
+
+            // Iterate over the keys of the outer object
+            for (let category in dictionary) {
+                // Iterate over the keys of the inner object and sum up their values
+                for (let key in dictionary[category]) {
+                    total += dictionary[category][key];
+                }
+            }
+
+            return total;
+        }
+
         function displayAchievements() {
+            let total = calculateTotal();
             let dictionary = JSON.parse(localStorage.getItem('smiskis')) || {};
             let series1secret = Object.keys(dictionary).length > 0 && "series1" in dictionary && "images/series1/secret.png" in dictionary["series1"];
             let bathsecret = Object.keys(dictionary).length > 0 && "bath" in dictionary && "images/bath/secret.png" in dictionary["bath"];
@@ -115,16 +131,16 @@
             let workall = Object.keys(dictionary).length > 0 && "work" in dictionary && dictionary["work"].length == 7;
             let yogaall = Object.keys(dictionary).length > 0 && "yoga" in dictionary && dictionary["yoga"].length == 7;
             const achievements = [
-                { name: "Collected 1 Smiski", achieved: localStorage.getItem("total") >= 1 },
-                { name: "Collected 5 Smiskis", achieved: localStorage.getItem("total") >= 10 },
-                { name: "Collected 25 Smiskis", achieved: localStorage.getItem("total") >= 25 },
-                { name: "Collected 50 Smiskis", achieved: localStorage.getItem("total") >= 50 },
-                { name: "Collected 100 Smiskis", achieved: localStorage.getItem("total") >= 100 },
+                { name: "Collected 1 Smiski", achieved: total >= 1 },
+                { name: "Collected 5 Smiskis", achieved: total >= 10 },
+                { name: "Collected 25 Smiskis", achieved: total >= 25 },
+                { name: "Collected 50 Smiskis", achieved: total >= 50 },
+                { name: "Collected 100 Smiskis", achieved: total >= 100 },
                 // { name: "Collected 150 Smiskis", achieved: localStorage.getItem("total") >= 150 },
                 // { name: "Collected 200 Smiskis", achieved: localStorage.getItem("total") >= 200 },
-                { name: "Collected 250 Smiskis", achieved: localStorage.getItem("total") >= 250 },
-                { name: "Collected 500 Smiskis", achieved: localStorage.getItem("total") >= 500 },
-                { name: "Collected 1000 Smiskis", achieved: localStorage.getItem("total") >= 1000 },
+                { name: "Collected 250 Smiskis", achieved: total >= 250 },
+                { name: "Collected 500 Smiskis", achieved: total >= 500 },
+                { name: "Collected 1000 Smiskis", achieved: total >= 1000 },
                 { name: "Series 1 Secret", achieved: series1secret },
                 { name: "Bath Series Secret", achieved: bathsecret },
                 { name: "Cheer Series Secret", achieved: cheersecret },

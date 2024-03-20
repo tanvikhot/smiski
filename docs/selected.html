@@ -173,10 +173,8 @@
             let dictionary = JSON.parse(localStorage.getItem('smiskis')) || {};
             let total = 0;
             if (Object.keys(dictionary).length === 0) {
-                console.log("hi");
                 localStorage.setItem("total", 0);
             } else {
-                console.log("bye");
                 total = localStorage.getItem("total");
             }
             console.log(total);
