@@ -10,10 +10,25 @@
   <!-- Bootstrap CSS link -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
+    
+
+    .box {
+        padding-left: 10px; /* Adjust as needed */
+        padding-right: 10px;
+        max-width: 90%;
+        height: auto;
+    }
+
     .btn-my-collection {
-      position: absolute;
-      top: 20px; /* Adjust top padding as needed */
-      right: 20px; /* Move the button to the far right */
+        position: absolute;
+        top: 20px; /* Adjust top padding as needed */
+        right: 20px; /* Move the button to the far right */
+    }
+
+    .btn-my-achievements {
+        position: absolute;
+        top: 20px; /* Adjust top padding as needed */
+        left: 20px; /* Move the button to the far left */
     }
   </style>
 </head>
@@ -21,6 +36,8 @@
     <p></p>
     <!-- Add custom class to the button -->
     <button class="btn btn-success btn-my-collection" onclick="collection()">My collection</button>
+    <p></p>
+    <button class="btn btn-info btn-my-achievements" onclick="achievement()">My achievements</button>
     <p></p>
     <h1>Select a smiski series!</h1>
     
@@ -47,6 +64,10 @@
 
         function collection() {
             window.location.href = `collection.html`;
+        }
+
+        function achievement() {
+            window.location.href = `achievement.html`;
         }
     </script>
 </body>

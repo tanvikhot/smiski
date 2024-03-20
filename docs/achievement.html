@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smiski Unboxing!</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ctext x='0' y='12' font-size='12' fill='%23000000'%3E😐%3C/text%3E%3C/svg%3E">
+
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Bootstrap CSS link -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .btn-my-collection {
+      position: absolute;
+      top: 20px; /* Adjust top padding as needed */
+      right: 20px; /* Move the button to the far right */
+    }
+    
+    
+    #seriesHeading {
+      position: absolute;
+      top: 70px; /* Adjust top position as needed */
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .achievement {
+        position: absolute;
+        text-align: center;
+        font-size: 80%;
+        display: flex;
+        flex-wrap: wrap;
+        top: 140px;
+        /* justify-content: center; */
+        /* align-items: center; */
+        max-width: 90%;
+        margin: 50px auto 0; /* Initial margin-top */
+    }   
+
+    .achievement-item {
+      padding-left: 10px;
+      padding-right: 10px;
+      /* Set width as a percentage of the screen width */
+      width: 30%; /* Adjust this value as needed */
+      max-width: 150px; /* Set maximum width for smaller screens */
+      height: 50px;
+      background-color: lightgray;
+      border-radius: 10px;
+      margin: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      color: white;
+    }
+    .achieved {
+      background-color: rgb(63, 167, 63);
+    }
+    .not-achieved {
+      background-color: rgb(202, 40, 40);
+    }
+        /* Media query for smaller screens */
+    @media (max-width: 768px) {
+        .achievement {
+            margin-top: 100px; /* Adjust the margin-top for smaller screens */
+        }
+    }
+    @media (min-width: 768px) {
+        #achievements {
+            margin-top: calc(70px + 2em); /* Adjust the margin-top based on h1 height */
+        }
+    }
+  </style>
+</head>
+<body>
+    <p></p>
+    <!-- Add custom class to the button -->
+    <button class="btn btn-primary btn-my-collection" onclick="goBack()">Go Home</button>
+    <p></p>
+    <h1 id="seriesHeading">My Achievements!</h1>
+
+    <div class="achievement" id="achievements"></div>
+    
+
+    <script>
+        function goBack() {
+            window.location.href = `index.html`;
+        }
+
+        function displayAchievements() {
+            let dictionary = JSON.parse(localStorage.getItem('smiskis')) || {};
+            let series1secret = Object.keys(dictionary).length > 0 && "series1" in dictionary && "images/series1/secret.png" in dictionary["series1"];
+            let bathsecret = Object.keys(dictionary).length > 0 && "bath" in dictionary && "images/bath/secret.png" in dictionary["bath"];
+            let cheersecret = Object.keys(dictionary).length > 0 && "cheer" in dictionary && "images/cheer/secret.png" in dictionary["cheer"];
+            let dressingsecret = Object.keys(dictionary).length > 0 && "dressing" in dictionary && "images/dressing/secret.png" in dictionary["dressing"];
+            let exercisingsecret = Object.keys(dictionary).length > 0 && "exercising" in dictionary && "images/exercising/secret.png" in dictionary["exercising"];
+            let livingsecret = Object.keys(dictionary).length > 0 && "living" in dictionary && "images/living/secret.png" in dictionary["living"];
+            let movingsecret = Object.keys(dictionary).length > 0 && "moving" in dictionary && "images/moving/secret.png" in dictionary["moving"];
+            let museumsecret = Object.keys(dictionary).length > 0 && "museum" in dictionary && "images/museum/secret.png" in dictionary["museum"];
+            let sleepingsecret = Object.keys(dictionary).length > 0 && "sleeping" in dictionary && "images/sleeping/secret.png" in dictionary["sleeping"];
+            let toiletsecret = Object.keys(dictionary).length > 0 && "toilet" in dictionary && "images/toilet/secret.png" in dictionary["toilet"];
+            let worksecret = Object.keys(dictionary).length > 0 && "work" in dictionary && "images/work/secret.png" in dictionary["work"];
+            let yogasecret = Object.keys(dictionary).length > 0 && "yoga" in dictionary && "images/yoga/secret.png" in dictionary["yoga"];
+
+            let series1all = Object.keys(dictionary).length > 0 && "series1" in dictionary && dictionary["series1"].length == 7;
+            let bathall = Object.keys(dictionary).length > 0 && "bath" in dictionary && dictionary["bath"].length == 7;
+            let cheerall = Object.keys(dictionary).length > 0 && "cheer" in dictionary && dictionary["cheer"].length == 7;
+            let dressingall = Object.keys(dictionary).length > 0 && "dressing" in dictionary && dictionary["dressing"].length == 7;
+            let exercisingall = Object.keys(dictionary).length > 0 && "exercising" in dictionary && dictionary["exercising"].length == 7;
+            let livingall = Object.keys(dictionary).length > 0 && "living" in dictionary && dictionary["living"].length == 7;
+            let movingall = Object.keys(dictionary).length > 0 && "moving" in dictionary && dictionary["moving"].length == 7;
+            let museumall = Object.keys(dictionary).length > 0 && "museum" in dictionary && dictionary["museum"].length == 7;
+            let sleepingall = Object.keys(dictionary).length > 0 && "sleeping" in dictionary && dictionary["sleeping"].length == 7;
+            let toiletall = Object.keys(dictionary).length > 0 && "toilet" in dictionary && dictionary["toilet"].length == 7;
+            let workall = Object.keys(dictionary).length > 0 && "work" in dictionary && dictionary["work"].length == 7;
+            let yogaall = Object.keys(dictionary).length > 0 && "yoga" in dictionary && dictionary["yoga"].length == 7;
+            const achievements = [
+                { name: "Collected 1 Smiski", achieved: localStorage.getItem("total") >= 1 },
+                { name: "Collected 5 Smiskis", achieved: localStorage.getItem("total") >= 10 },
+                { name: "Collected 25 Smiskis", achieved: localStorage.getItem("total") >= 25 },
+                { name: "Collected 50 Smiskis", achieved: localStorage.getItem("total") >= 50 },
+                { name: "Collected 100 Smiskis", achieved: localStorage.getItem("total") >= 100 },
+                // { name: "Collected 150 Smiskis", achieved: localStorage.getItem("total") >= 150 },
+                // { name: "Collected 200 Smiskis", achieved: localStorage.getItem("total") >= 200 },
+                { name: "Collected 250 Smiskis", achieved: localStorage.getItem("total") >= 250 },
+                { name: "Collected 500 Smiskis", achieved: localStorage.getItem("total") >= 500 },
+                { name: "Collected 1000 Smiskis", achieved: localStorage.getItem("total") >= 1000 },
+                { name: "Series 1 Secret", achieved: series1secret },
+                { name: "Bath Series Secret", achieved: bathsecret },
+                { name: "Cheer Series Secret", achieved: cheersecret },
+                { name: "Dressing Series Secret", achieved: dressingsecret },
+                { name: "Exercising Series Secret", achieved: exercisingsecret },
+                { name: "Living Series Secret", achieved: livingsecret },
+                { name: "Moving Series Secret", achieved: movingsecret },
+                { name: "Museum Series Secret", achieved: museumsecret },
+                { name: "Sleeping Series Secret", achieved: sleepingsecret },
+                { name: "Toilet Series Secret", achieved: toiletsecret },
+                { name: "Work Series Secret", achieved: worksecret },
+                { name: "Yoga Series Secret", achieved: yogasecret },
+                // { name: "Pulled 1 Repeat!", achieved: false },
+                // { name: "Pulled 5 Repeats!", achieved: false },
+                // { name: "Pulled 10 Repeats!", achieved: false },
+                // { name: "Pulled 25 Repeats!", achieved: false },
+                { name: "Finished Series 1!", achieved: series1all },
+                { name: "Finished Bath Series!", achieved: bathall },
+                { name: "Finished Cheer Series!", achieved: cheerall },
+                { name: "Finished Dressing Series!", achieved: dressingall },
+                { name: "Finished Exercising Series!", achieved: exercisingall },
+                { name: "Finished Living Series!", achieved: livingall },
+                { name: "Finished Moving Series!", achieved: movingall },
+                { name: "Finished Museum Series!", achieved: museumall },
+                { name: "Finished Sleeping Series!", achieved: sleepingall },
+                { name: "Finished Toilet Series!", achieved: toiletall },
+                { name: "Finished Work Series!", achieved: workall },
+                { name: "Finished Yoga Series!", achieved: yogaall },
+                // { name: "Pulled a Secret Repeat!", achieved: false },
+                // Add more achievements here
+            ];
+
+            const achievementsContainer = document.getElementById('achievements');
+
+            // Iterate over achievements and create achievement bubbles
+            achievements.forEach(achievement => {
+                const achievementItem = document.createElement('div');
+                achievementItem.classList.add('achievement-item');
+                if (achievement.achieved) {
+                    achievementItem.classList.add('achieved');
+                } else {
+                    achievementItem.classList.add('not-achieved');
+                }
+                achievementItem.textContent = achievement.name;
+                achievementsContainer.appendChild(achievementItem);
+            });
+        }
+
+        displayAchievements();
+        
+    </script>
+</body>
+</html>
+
