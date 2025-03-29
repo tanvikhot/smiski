@@ -19,35 +19,34 @@
         height: auto;
     }
 
-/* Header container with spacing */
-.header-container {
-    width: 100%;
-    text-align: center;
-    padding-top: 5vh; /* Extra space so buttons are not cut off */
-}
-
-/* Flexbox for buttons */
-.button-container {
+   .header-container {
     display: flex;
-    justify-content: space-between;
-    width: 90%;
-    max-width: 500px;
-    margin: 0 auto; /* Center the button container */
-    position: relative;
-    padding-top: 10px; /* Ensures buttons don't overlap */
-}
-
-/* Ensure buttons align left and right */
-.btn-my-collection, .btn-my-achievements {
-    flex: 1;
-    max-width: 150px;
-}
-
-/* Ensure the h1 is always visible below buttons */
-h1 {
-    margin-top: 20px;
-    font-size: 1.8rem;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
+    padding-top: 60px; /* Ensure enough space for buttons */
+    width: 100%;
+    position: relative;
+}
+
+.button-container {
+    /* position: absolute;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between; */
+    padding-top: 15%; /* Keeps buttons away from screen edges */
+}
+
+.btn-my-collection, .btn-my-achievements {
+    position: relative;
+}
+
+h1 {
+    margin-top: 20px; /* Adjust space below buttons */
+    text-align: center;
+    font-size: 1.8rem; /* Adjust font size for smaller screens */
 }
 
   </style>
