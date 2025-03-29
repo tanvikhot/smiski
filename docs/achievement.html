@@ -117,6 +117,8 @@
             let toiletsecret = Object.keys(dictionary).length > 0 && "toilet" in dictionary && "images/toilet/secret.png" in dictionary["toilet"];
             let worksecret = Object.keys(dictionary).length > 0 && "work" in dictionary && "images/work/secret.png" in dictionary["work"];
             let yogasecret = Object.keys(dictionary).length > 0 && "yoga" in dictionary && "images/yoga/secret.png" in dictionary["yoga"];
+            let hipperssecret = Object.keys(dictionary).length > 0 && "hippers" in dictionary && "images/hippers/secret.png" in dictionary["hippers"];
+            let sundaysecret = Object.keys(dictionary).length > 0 && "sunday" in dictionary && "images/sunday/secret.png" in dictionary["sunday"];
 
             let series1all = Object.keys(dictionary).length > 0 && "series1" in dictionary && dictionary["series1"].length == 7;
             let bathall = Object.keys(dictionary).length > 0 && "bath" in dictionary && dictionary["bath"].length == 7;
@@ -130,6 +132,8 @@
             let toiletall = Object.keys(dictionary).length > 0 && "toilet" in dictionary && dictionary["toilet"].length == 7;
             let workall = Object.keys(dictionary).length > 0 && "work" in dictionary && dictionary["work"].length == 7;
             let yogaall = Object.keys(dictionary).length > 0 && "yoga" in dictionary && dictionary["yoga"].length == 7;
+            let hippersall = Object.keys(dictionary).length > 0 && "hippers" in dictionary && dictionary["hippers"].length == 7;
+            let sundayall = Object.keys(dictionary).length > 0 && "sunday" in dictionary && dictionary["sunday"].length == 7;
             const achievements = [
                 { name: "Collected 1 Smiski", achieved: total >= 1 },
                 { name: "Collected 10 Smiskis", achieved: total >= 10 },
@@ -153,6 +157,8 @@
                 { name: "Toilet Series Secret", achieved: toiletsecret },
                 { name: "Work Series Secret", achieved: worksecret },
                 { name: "Yoga Series Secret", achieved: yogasecret },
+                { name: "Hippers Series Secret", achieved: hipperssecret },
+                { name: "Sunday Series Secret", achieved: sundaysecret },
                 // { name: "Pulled 1 Repeat!", achieved: false },
                 // { name: "Pulled 5 Repeats!", achieved: false },
                 // { name: "Pulled 10 Repeats!", achieved: false },
@@ -169,6 +175,8 @@
                 { name: "Finished Toilet Series!", achieved: toiletall },
                 { name: "Finished Work Series!", achieved: workall },
                 { name: "Finished Yoga Series!", achieved: yogaall },
+                { name: "Finished Hippers Series!", achieved: hippersall },
+                { name: "Finished Sunday Series!", achieved: sundayall },
                 // { name: "Pulled a Secret Repeat!", achieved: false },
                 // Add more achievements here
             ];
