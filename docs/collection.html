@@ -10,16 +10,30 @@
   <!-- Bootstrap CSS link -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
-    .btn-my-collection {
-      position: absolute;
-      top: 20px; /* Adjust top padding as needed */
-      left: 20px; /* Move the button to the far right */
-    }
-    .btn-my-entire-collection {
-      position: absolute;
-      top: 20px; /* Adjust top padding as needed */
-      right: 20px; /* Move the button to the far right */
-    }
+    .header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 60px; /* Ensure enough space for buttons */
+    width: 100%;
+    position: relative;
+}
+
+.button-container {
+    padding-top: 15%; /* Keeps buttons away from screen edges */
+}
+
+.btn-my-collection, .btn-my-entire-collection {
+    position: relative;
+}
+
+h1 {
+    margin-top: 20px; /* Adjust space below buttons */
+    text-align: center;
+    font-size: 1.8rem; /* Adjust font size for smaller screens */
+}
+  
   </style>
 </head>
 <body>
@@ -30,7 +44,16 @@
     <button class="btn btn-warning btn-my-entire-collection" onclick="entireCollection()">View Entire Collection</button>
 
     <p></p>
-    <h1>Select a smiski series to view your collection!</h1>
+    <div class="header-container">
+      <!-- Buttons inside a flex container -->
+      <div class="button-container">
+        <button class="btn btn-primary btn-my-collection" onclick="goBack()">Go Home</button>
+        <button class="btn btn-warning btn-my-entire-collection" onclick="entireCollection()">View Entire Collection</button>
+    
+      </div>
+      <h1>Select a smiski series to view your collection!</h1>
+  </div>
+   
     
     <div id="series">
         <img src="images/exercising/box.png" class="box" id="box1" alt="exercising box" style="width: 300px;" onclick="handleImageClick('exercising')">
@@ -46,6 +69,7 @@
         <img src="images/work/box.png" class="box" id="box11" alt="work box" style="width: 300px;" onclick="handleImageClick('work')">
         <img src="images/moving/box.png" class="box" id="box12" alt="moving box" style="width: 300px;" onclick="handleImageClick('moving')">
         <img src="images/hippers/box.png" class="box" id="box13" alt="hippers box" style="width: 300px;" onclick="handleImageClick('hippers')">
+        <img src="images/sunday/box.png" class="box" id="box14" alt="hippers box" style="width: 300px;" onclick="handleImageClick('sunday')">
     </div>
     <div></div>
     <script>
